@@ -1,0 +1,89 @@
+:root {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --accent: hwb(208 58% 24.3%);
+}
+body,p {
+    margin: 0;
+    padding: 0;
+}
+main {
+    padding: 0.5em;
+}
+h3 {
+    margin-top: 0;
+    color: #111
+}
+nav {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    word-wrap: break-word;
+    background-color: var(--accent);
+}
+nav a {
+    padding: 0.5em;
+    color: #111;
+    flex: 1 1 auto;    
+    text-decoration: none;
+}
+
+#form-add-card {
+    display: grid;
+}
+
+
+table {
+    table-layout: auto;
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+tr {
+    border-bottom: 1px solid #aaa;
+}
+thead tr {
+    border-top: 1px solid #aaa;
+}
+tr:nth-of-type(even), th {
+    background-color: #eee;
+}
+th {
+    text-align: left;
+}
+button {
+    min-height: 48px;
+    min-width: 72px;
+}
+
+@media screen and (min-width: 700px) {
+    nav {
+        justify-content: flex-start;
+    }
+    nav a {
+        flex: 0 0 auto;
+        padding-right: 32px;
+    }
+    #form-add-card {
+        max-width: 600px;
+    }
+}
+
+details:not([open]) summary {
+    min-height: 5em;
+}
+details[open] summary {
+    display: none;
+}
+
+
+.cover {
+    min-height: 8em;
+}
+.did-you-remember {
+    margin-top: 0.5em;
+    margin-bottom: 0.25em;
+}
+button + button {
+    margin-left: 0.25em;
+}
