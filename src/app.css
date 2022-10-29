@@ -1,6 +1,5 @@
 :root {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --accent: hwb(208 58% 24.3%);
 }
 body,p {
     margin: 0;
@@ -16,21 +15,46 @@ h3 {
 nav {
     display: flex;
     flex-flow: row wrap;
-    justify-content: space-between;
+    justify-content: center;
     word-wrap: break-word;
-    background-color: var(--accent);
+    background-color: #eee;
+    box-shadow: 0 0 4px 1px gray;
 }
 nav a {
     padding: 0.5em;
-    color: #111;
-    flex: 1 1 auto;    
     text-decoration: none;
+    text-align: center;
+    color: #111
+}
+
+.card {
+    box-shadow: 1px 1px 4px 1px gray;
+    max-width: 600px;
+}
+.card-front {
+    min-height: 4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #aaa;
+}
+.card-cover,
+.card-back {
+    min-height: 8em;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee;
 }
 
 #form-add-card {
     display: grid;
+    row-gap: 0.75em;
 }
-
+#form-add-card > div {
+    display: grid;
+}
 
 table {
     table-layout: auto;
