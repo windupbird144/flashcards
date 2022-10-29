@@ -20,7 +20,7 @@ export default defineConfig({
       manifest: {
         name: "Flashcards",
         short_name: "Flashcards",
-        description: "Offline flash cards for the browser",
+        description: "Offline flash cards app for the browser",
         theme_color: "#ffffff",
         icons: [
           {
