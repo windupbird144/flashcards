@@ -1,59 +1,104 @@
 :root {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-body,p {
+
+body {
     margin: 0;
-    padding: 0;
 }
+
 main {
-    padding: 0.5em;
+    padding: 1em;
 }
-h3 {
+
+h2 {
     margin-top: 0;
-    color: #111
 }
+
+
+#decks ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+a {
+    color: blue;
+}
+
+.study-stats {
+    margin-top: 1.5em;
+}
+#study {
+    max-width: 600px;
+}
+#study h2 {
+    margin-bottom: 0.5em;
+}
+
+.study-links a {
+    display: block;
+    padding: 0.5em 0;
+}
+#decks a {
+    display: block;
+    padding: 0.5em;
+    text-decoration: none;
+}
+
+#decks li:nth-last-of-type(even) {
+    background-color: #eee;
+}
+
+form {
+    display: grid;
+}
+form label:not(:first-of-type),
+form [type="submit"] {
+    margin-top: 1em;
+}
+
+
+.card {
+    display: grid;
+    box-shadow: 1px 1px 2px 1px rgba(0,0,0,0.25);
+}
+
+.card-front {
+    background-color: bisque;
+}
+.card > div {
+    padding: 1em;
+}
+
+.judgement {
+    margin-top: 1em;
+}
+.card-buttons {
+    margin-top: 0.25em;
+    display: grid;
+    grid-template-columns: 100px 100px;
+    column-gap: 0.25em;
+}
+
 nav {
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: flex-start;
     word-wrap: break-word;
     background-color: #eee;
     box-shadow: 0 0 4px 1px gray;
 }
 nav a {
-    padding: 0.5em;
+    padding: 0.5em 1em;
     text-decoration: none;
     text-align: center;
     color: #111
 }
-
-.card {
-    box-shadow: 1px 1px 4px 1px gray;
-    max-width: 600px;
+nav a+a {
+    padding-left: 0.5em;
 }
-.card-front {
-    min-height: 4em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 1px solid #aaa;
-}
-.card-cover,
-.card-back {
-    min-height: 8em;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #eee;
-}
-
-#form-add-card {
+#app {
     display: grid;
-    row-gap: 0.75em;
-}
-#form-add-card > div {
-    display: grid;
+    gap: 0;
 }
 
 table {
@@ -75,39 +120,14 @@ tr:nth-of-type(even), th {
 th {
     text-align: left;
 }
-button {
-    min-height: 48px;
-    min-width: 72px;
+
+.delete-deck {
+    margin-top: 5em;
+}
+.delete-deck summary {
+    margin-bottom: 1em;
 }
 
-@media screen and (min-width: 700px) {
-    nav {
-        justify-content: flex-start;
-    }
-    nav a {
-        flex: 0 0 auto;
-        padding-right: 32px;
-    }
-    #form-add-card {
-        max-width: 600px;
-    }
-}
-
-details:not([open]) summary {
-    min-height: 5em;
-}
-details[open] summary {
-    display: none;
-}
-
-
-.cover {
-    min-height: 8em;
-}
-.did-you-remember {
-    margin-top: 0.5em;
-    margin-bottom: 0.25em;
-}
-button + button {
-    margin-left: 0.25em;
+.q {
+    font-size: smaller;
 }
