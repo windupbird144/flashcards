@@ -4,8 +4,8 @@ import { judgeCard } from "./lib/cards";
 import { countStudyCard, getStudyCard, putCard } from "./lib/storage";
 
 export function Study({ name }) {
-  name = decodeURI(name)
-  
+  name = decodeURI(name);
+
   const [studyCount, setStudyCount] = useState(0);
   const [card, setCard] = useState(null);
 
@@ -15,10 +15,8 @@ export function Study({ name }) {
   // Update sets the next card to study and also
   // the count of cards to study
   const update = () => {
-    countStudyCard({ deck: name, scheduled })
-      .then(setStudyCount);
-    getStudyCard({ deck: name, scheduled })
-      .then(setCard);
+    countStudyCard({ deck: name, scheduled }).then(setStudyCount);
+    getStudyCard({ deck: name, scheduled }).then(setCard);
   };
 
   // Update on initial load
@@ -30,17 +28,22 @@ export function Study({ name }) {
     putCard(newCard).then(update);
   };
 
-
   return (
     <>
-      <h3>Study</h3>
+      <h2>Study</h2>
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item"><Link to="/">Decks</Link></li>
+          <li className="breadcrumb-item"><Link href={`/decks/${name}`}>{name}</Link></li>
+          <li className="breadcrumb-item active" aria-current="page">Study</li>
+        </ol>
+      </nav>
       <p>To study: {studyCount}</p>
-      {card
-        ? <StudyCard card={card} onJudge={onjudge} />
-        : <p>There are no cards to study right now.</p>}
-      <p>
-        <Link to={`/decks/${name}`}>Back</Link>
-      </p>
+      {card ? (
+        <StudyCard card={card} onJudge={onjudge} />
+      ) : (
+        <p>There are no cards to study right now.</p>
+      )}
     </>
   );
 }
@@ -52,39 +55,46 @@ function StudyCard({ card, onJudge }) {
     e.preventDefault();
     e.stopPropagation();
     const action = e.target.dataset.action;
-    if (!action)
-      return;
+    if (!action) return;
     const remembered = action === "yes";
     onJudge(remembered);
   };
 
   // When the card changes, hide the card
-  useEffect(hide, [card])
+  useEffect(hide, [card]);
 
-  return <div className="card">
-    <div className="card-front">{card.front}</div>
-    <div
-      className="card-cover"
-      hidden={!hidden}
-      onClick={reveal}
-      // allow tab + enter to reveal
-      onKeyDown={reveal}
-      tabIndex={1}
-    >
-      Tap to reveal
-    </div>
-    <div className="card-back" hidden={hidden}>
-      <div className="answer">{card.back}</div>
-      <div className="judgement">
-        <div className="q">Did you remember this card?</div>
-        <div className="card-buttons"
-          onClick={onsubmit}
-          onKeyDown={onsubmit}
+  // reveal()
+
+  return (
+    <div className="card">
+      <div className="card-body">
+        <div className="card-front"><b>Question: </b>{card.front}</div>
+        <hr />
+        <div
+          className="card-cover"
+          hidden={!hidden}
+          onClick={reveal}
+          onKeyDown={reveal}
+          tabIndex={1}
         >
-          <button data-action="yes">yes</button>
-          <button data-action="no">no</button>
+          Tap to reveal the answer
+        </div>
+        <div className="card-back" hidden={hidden}>
+          <div className="answer"><b>Answer: </b>{card.back}</div>
+          <hr />
+          <div className="judgement">
+            <div className="q mb-3">Did you remember this card?</div>
+            <div
+              className="btn-group"
+              onClick={onsubmit}
+              onKeyDown={onsubmit}
+            >
+              <button data-action="yes" className="btn btn-outline-primary btn">yes</button>
+              <button data-action="no" className="btn btn-outline-primary btn">no</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>;
+  );
 }

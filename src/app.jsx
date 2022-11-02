@@ -11,15 +11,43 @@ export function App() {
    */
   return (
     <>
-      <nav>
-        <Link to="/">
-          <a>Decks</a>
-        </Link>
-        <Link to="/about">
-          <a>About</a>
-        </Link>
+      <nav className="navbar navbar-expand-lg" style={{backgroundColor: "#e3f2fd"}}>
+        <div className="container-fluid ">
+          <span>
+            Flashcards
+          </span>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div className="navbar-nav">
+              <Link
+                className="nav-link"
+                aria-current="page"
+                to="/"
+                >
+                Decks
+              </Link>
+              <Link
+                className="nav-link"
+                aria-current="page"
+                to="/about"
+                >
+                About
+              </Link>
+            </div>
+          </div>
+        </div>
       </nav>
-      <main>
+      <main className="p-3">
         <Route path="/" component={Decks} />
         <Route path="/decks/:name">
           {(params) => <Deck name={params.name} />}
@@ -66,4 +94,3 @@ function About() {
     </article>
   );
 }
-

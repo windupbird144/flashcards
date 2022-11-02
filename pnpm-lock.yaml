@@ -2,7 +2,9 @@ lockfileVersion: 5.4
 
 specifiers:
   '@babel/core': 7.x
+  '@popperjs/core': ^2.11.6
   '@preact/preset-vite': ^2.4.0
+  bootstrap: 5.2.2
   idb: ^7.1.0
   preact: ^10.11.2
   vite: ^3.2.0
@@ -11,6 +13,8 @@ specifiers:
 
 dependencies:
   '@babel/core': 7.19.6
+  '@popperjs/core': 2.11.6
+  bootstrap: 5.2.2_@popperjs+core@2.11.6
   vite-plugin-pwa: 0.13.1_vite@3.2.1
   wouter-preact: 2.8.0-alpha.2_preact@10.11.2
 
@@ -1265,6 +1269,10 @@ packages:
       fastq: 1.13.0
     dev: false
 
+  /@popperjs/core/2.11.6:
+    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
+    dev: false
+
   /@preact/preset-vite/2.4.0_mkngqnbm6b4trbinqxm2u2jidy:
     resolution: {integrity: sha512-EiUMHuiCThuTuK+eH2r5uDg+CJbbt4aWJGePuszrHuXUpRv6WAeO4S+/DTJsEHtPtGmPRR3cLQ68N5097eOSRA==}
     peerDependencies:
@@ -1491,6 +1499,14 @@ packages:
 
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
+    dev: false
+
+  /bootstrap/5.2.2_@popperjs+core@2.11.6:
+    resolution: {integrity: sha512-dEtzMTV71n6Fhmbg4fYJzQsw1N29hJKO1js5ackCgIpDcGid2ETMGC6zwSYw09v05Y+oRdQ9loC54zB1La3hHQ==}
+    peerDependencies:
+      '@popperjs/core': ^2.11.6
+    dependencies:
+      '@popperjs/core': 2.11.6
     dev: false
 
   /brace-expansion/1.1.11:

@@ -21,16 +21,18 @@ export function Decks() {
     return (
       <section id="decks">
         <h2>Decks</h2>
-        <ul>
+        <div className='list-group mb-3'>
           {
-            decks.map(e => <li>
-              <Link to={`/decks/${e}`}>
-                <a>{e}</a>
+            decks.map(e => 
+              <Link
+                className="list-group-item"
+                to={`/decks/${e}`}>
+                  {e}
               </Link>
-            </li>)
+            )
           }
-        </ul>
-        <button onClick={newdeck} onKeyDown={newdeck}>
+        </div>
+        <button className='btn btn-primary' onClick={newdeck} onKeyDown={newdeck}>
           Create new deck
         </button>
       </section>

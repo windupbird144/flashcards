@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@babel/core": "7.x",
+    "@popperjs/core": "^2.11.6",
+    "bootstrap": "5.2.2",
     "vite-plugin-pwa": "^0.13.1",
     "wouter-preact": "2.8.0-alpha.2"
   },

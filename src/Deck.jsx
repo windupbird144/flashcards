@@ -19,7 +19,13 @@ export function Deck({ name, ...props }) {
   countStudyCard({ deck: name, scheduled: Date.now() }).then(setNumStudyCards);
 
   const form = useRef();
+  const frontTextArea = useRef()
 
+  /**
+   * Submit the form and create a new card.
+   * When done, focus on the 'front' textarea
+   * so you can easily enter the next card
+   */
   const onsubmit = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -31,6 +37,7 @@ export function Deck({ name, ...props }) {
     });
     putCard(newCard);
     form.current.reset();
+    frontTextArea.current.focus()
     countCards({ deck: name }).then(setNumCards);
   };
 
@@ -44,17 +51,21 @@ export function Deck({ name, ...props }) {
   return (
     <section id="study">
       <h2>{decodeURI(name)}</h2>
+      <ol className="breadcrumb">
+        <li className="breadcrumb-item"><Link to="/" tabIndex={1}>Decks</Link></li>
+        <li className="breadcrumb-item active" aria-current="page">{name}</li>
+      </ol>
 
-      <div className="study-links">
+      <div className="study-links d-flex gap-2 mb-3">
         <Link href={`/decks/${name}/study`}>
-          <a id="study-now">Study now</a>
+          <a id="study-now" className="btn btn-primary" tabIndex={2}>Study now</a>
         </Link>
         <Link href={`/decks/${name}/browse`}>
-          <a id="">Browse cards</a>
+          <a className="btn btn-secondary" tabIndex={3}>Browse cards</a>
         </Link>
       </div>
 
-      <div className="study-stats">
+      <div className="study-stats mb-5">
         <div>
           Cards to study: <b>{numStudyCards}</b>
         </div>
@@ -66,23 +77,24 @@ export function Deck({ name, ...props }) {
       <div className="study-add-card">
         <h4>Add a card</h4>
         <form action="#" ref={form} onSubmit={onsubmit}>
-          <label htmlFor="front">Front</label>
-          <textarea name="front" id="front" rows={4} required></textarea>
+          <div className="mb-3">
+            <label htmlFor="front" className="form-label">Front</label>
+            <textarea name="front" id="front" rows={4} className="form-control" required ref={frontTextArea} tabIndex={4}></textarea>
+          </div>
+          <div className="mb-3">
+          <label htmlFor="back" className="form-label">Back</label>
+          <textarea name="back" id="back" rows={4} className="form-control" required tabIndex={5}></textarea>
+          </div>
 
-          <label htmlFor="back">Back</label>
-          <textarea name="back" id="back" rows={4} required></textarea>
-
-          <button type="submit">Add card</button>
+          <button type="submit" className="btn btn-primary" tabIndex={6}>Add card</button>
         </form>
       </div>
 
-      <p>
-        <Link to={`/`}>Back</Link>
-      </p>
-      <details className="delete-deck">
-        <summary>Delete deck</summary>
-        <button onClick={ondelete}>tap to delete this deck</button>
-      </details>
+      <div className="mt-5">
+        <button
+          className="btn-outline-danger btn"
+          onClick={ondelete}>delete deck</button>
+      </div>
     </section>
   );
 }
